@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://sch|emas.android.com/tools">
+
+    <com.example.databinding_demo.MultipleLinesEditText
+        android:id="@+id/et_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="9dp"
+        android:background="@drawable/bg_text_input_layout"
+        android:gravity="top"
+        android:inputType="textMultiLine|textCapSentences"
+        android:minHeight="120dp"
+        android:paddingStart="14dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="14dp"
+        android:paddingBottom="10dp"
+        android:scrollbars="vertical" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_hint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:background="@color/white"
+        android:paddingStart="4dp"
+        android:paddingEnd="4dp"
+        android:textColor="#6600ff00"
+        tools:text="Notes" />
+
+</merge>

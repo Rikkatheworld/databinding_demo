@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:myTextView="http://schemas.android.com/tools"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.databinding_demo.MainViewModel" />
+
+        <import type="com.example.databinding_demo.Converter" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="strategy"
+            type="com.example.databinding_demo.Strategy" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
+
+        <Button
+            android:id="@+id/btn_changed_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> viewModel.onButtonClick()}"
+            android:text="Changed Status"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btn_show_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> viewModel.onShowTextClick()}"
+            android:text="show text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_rikka"
+            android:layout_width="120dp"
+            android:layout_height="60dp"
+            android:background="#66ffff00"
+            android:gravity="center"
+            android:text="Rikka"
+            android:textSize="55px"
+            android:visibility="@{viewModel.strategy.show()? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="@{String.valueOf(viewModel.text)}"
+            android:textSize="70sp"
+            app:layout_constraintTop_toBottomOf="@id/tv_rikka"
+            myTextView:color="@{viewModel.color}"
+            myTextView:textClicked="@{(v, s) -> viewModel.onTextClick(v, s)}" />
+
+        <com.example.databinding_demo.CustomTextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:scrollbars="vertical"
+            app:hint="Label"
+            app:layout_constraintBottom_toTopOf="@id/tv_rikka"
+            app:maxLines="6"
+            app:title="你好"
+            app:text="@={viewModel.textContent}"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
